@@ -1,0 +1,320 @@
+
+matriz_fija.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000002e  00800100  0000016a  000001fe  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000016a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000e  0080012e  0080012e  0000022c  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000022c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  000008f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  00000980  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000004c4  00000000  00000000  00000a00  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000166  00000000  00000000  00000ec4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000035f  00000000  00000000  0000102a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000024  00000000  00000000  0000138c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000133  00000000  00000000  000013b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	2d c0       	rjmp	.+90     	; 0x6a <__bad_interrupt>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	2b c0       	rjmp	.+86     	; 0x6a <__bad_interrupt>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
+  1e:	25 c0       	rjmp	.+74     	; 0x6a <__bad_interrupt>
+  20:	24 c0       	rjmp	.+72     	; 0x6a <__bad_interrupt>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	22 c0       	rjmp	.+68     	; 0x6a <__bad_interrupt>
+  26:	21 c0       	rjmp	.+66     	; 0x6a <__bad_interrupt>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	1e c0       	rjmp	.+60     	; 0x6a <__bad_interrupt>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d2 e0       	ldi	r29, 0x02	; 2
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_copy_data>:
+  40:	11 e0       	ldi	r17, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	ea e6       	ldi	r30, 0x6A	; 106
+  48:	f1 e0       	ldi	r31, 0x01	; 1
+  4a:	02 c0       	rjmp	.+4      	; 0x50 <__do_copy_data+0x10>
+  4c:	05 90       	lpm	r0, Z+
+  4e:	0d 92       	st	X+, r0
+  50:	ae 32       	cpi	r26, 0x2E	; 46
+  52:	b1 07       	cpc	r27, r17
+  54:	d9 f7       	brne	.-10     	; 0x4c <__do_copy_data+0xc>
+
+00000056 <__do_clear_bss>:
+  56:	11 e0       	ldi	r17, 0x01	; 1
+  58:	ae e2       	ldi	r26, 0x2E	; 46
+  5a:	b1 e0       	ldi	r27, 0x01	; 1
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	ac 33       	cpi	r26, 0x3C	; 60
+  62:	b1 07       	cpc	r27, r17
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	02 d0       	rcall	.+4      	; 0x6c <main>
+  68:	7e c0       	rjmp	.+252    	; 0x166 <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <main>:
+unsigned char letra;								 
+unsigned char copia[8];	
+unsigned char k=0;						 
+
+int main(void)
+{	DDRB=0xff;
+  6c:	8f ef       	ldi	r24, 0xFF	; 255
+  6e:	84 b9       	out	0x04, r24	; 4
+	DDRD=0xff;
+  70:	8a b9       	out	0x0a, r24	; 10
+	PORTD=0x80;// activada 1ra col
+  72:	80 e8       	ldi	r24, 0x80	; 128
+  74:	8b b9       	out	0x0b, r24	; 11
+	
+	
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+		{	if(k==7)
+			copia[k]=mensaje[letra][col_mensaje];
+  76:	0f 2e       	mov	r0, r31
+  78:	f1 e3       	ldi	r31, 0x31	; 49
+  7a:	cf 2e       	mov	r12, r31
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	df 2e       	mov	r13, r31
+  80:	f0 2d       	mov	r31, r0
+  82:	07 e3       	ldi	r16, 0x37	; 55
+  84:	11 e0       	ldi	r17, 0x01	; 1
+  86:	0f 2e       	mov	r0, r31
+  88:	f0 e0       	ldi	r31, 0x00	; 0
+  8a:	ef 2e       	mov	r14, r31
+  8c:	f1 e0       	ldi	r31, 0x01	; 1
+  8e:	ff 2e       	mov	r15, r31
+  90:	f0 2d       	mov	r31, r0
+	DDRD=0xff;
+	PORTD=0x80;// activada 1ra col
+	
+	
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+  92:	78 e0       	ldi	r23, 0x08	; 8
+		}			
+        
+		for(duracion=0;duracion<15;duracion++)// duracion
+		{	
+			for(col=0;col<8;col++)//barrido de columnas
+			{	PORTB=~copia[col];
+  94:	20 e3       	ldi	r18, 0x30	; 48
+  96:	31 e0       	ldi	r19, 0x01	; 1
+				_delay_ms(1);
+				PORTD=PORTD>>1;
+			}
+			PORTD=0x80;// volver a la primera col
+  98:	60 e8       	ldi	r22, 0x80	; 128
+	
+	
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+		{	if(k==7)
+			copia[k]=mensaje[letra][col_mensaje];
+  9a:	40 91 2f 01 	lds	r20, 0x012F
+  9e:	50 e0       	ldi	r21, 0x00	; 0
+  a0:	c0 91 39 01 	lds	r28, 0x0139
+  a4:	d0 e0       	ldi	r29, 0x00	; 0
+  a6:	d6 01       	movw	r26, r12
+  a8:	80 e0       	ldi	r24, 0x00	; 0
+  aa:	14 c0       	rjmp	.+40     	; 0xd4 <main+0x68>
+	PORTD=0x80;// activada 1ra col
+	
+	
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+		{	if(k==7)
+  ac:	87 30       	cpi	r24, 0x07	; 7
+  ae:	91 f4       	brne	.+36     	; 0xd4 <main+0x68>
+			copia[k]=mensaje[letra][col_mensaje];
+  b0:	ca 01       	movw	r24, r20
+  b2:	88 0f       	add	r24, r24
+  b4:	99 1f       	adc	r25, r25
+  b6:	88 0f       	add	r24, r24
+  b8:	99 1f       	adc	r25, r25
+  ba:	88 0f       	add	r24, r24
+  bc:	99 1f       	adc	r25, r25
+  be:	84 0f       	add	r24, r20
+  c0:	95 1f       	adc	r25, r21
+  c2:	8c 0f       	add	r24, r28
+  c4:	9d 1f       	adc	r25, r29
+  c6:	f7 01       	movw	r30, r14
+  c8:	e8 0f       	add	r30, r24
+  ca:	f9 1f       	adc	r31, r25
+  cc:	80 81       	ld	r24, Z
+  ce:	f8 01       	movw	r30, r16
+  d0:	80 83       	st	Z, r24
+  d2:	08 c0       	rjmp	.+16     	; 0xe4 <main+0x78>
+			else	
+				copia[k]=copia[k+1];
+  d4:	9c 91       	ld	r25, X
+unsigned char col;
+unsigned char letra;								 
+unsigned char copia[8];	
+unsigned char k=0;						 
+
+int main(void)
+  d6:	fd 01       	movw	r30, r26
+  d8:	31 97       	sbiw	r30, 0x01	; 1
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+		{	if(k==7)
+			copia[k]=mensaje[letra][col_mensaje];
+			else	
+				copia[k]=copia[k+1];
+  da:	90 83       	st	Z, r25
+  dc:	8f 5f       	subi	r24, 0xFF	; 255
+  de:	11 96       	adiw	r26, 0x01	; 1
+	DDRD=0xff;
+	PORTD=0x80;// activada 1ra col
+	
+	
+    while(1)
+    {	for(k=0;k<8;k++)// ciclo de copiado
+  e0:	88 30       	cpi	r24, 0x08	; 8
+  e2:	21 f7       	brne	.-56     	; 0xac <main+0x40>
+  e4:	70 93 2e 01 	sts	0x012E, r23
+			copia[k]=mensaje[letra][col_mensaje];
+			else	
+				copia[k]=copia[k+1];
+		}			
+        
+		for(duracion=0;duracion<15;duracion++)// duracion
+  e8:	10 92 3b 01 	sts	0x013B, r1
+  ec:	10 92 3a 01 	sts	0x013A, r1
+		{	
+			for(col=0;col<8;col++)//barrido de columnas
+  f0:	10 92 38 01 	sts	0x0138, r1
+  f4:	80 e0       	ldi	r24, 0x00	; 0
+			{	PORTB=~copia[col];
+  f6:	f9 01       	movw	r30, r18
+  f8:	e8 0f       	add	r30, r24
+  fa:	f1 1d       	adc	r31, r1
+  fc:	80 81       	ld	r24, Z
+  fe:	80 95       	com	r24
+ 100:	85 b9       	out	0x05, r24	; 5
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 102:	89 ef       	ldi	r24, 0xF9	; 249
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	01 97       	sbiw	r24, 0x01	; 1
+ 108:	f1 f7       	brne	.-4      	; 0x106 <main+0x9a>
+ 10a:	00 c0       	rjmp	.+0      	; 0x10c <main+0xa0>
+ 10c:	00 00       	nop
+				_delay_ms(1);
+				PORTD=PORTD>>1;
+ 10e:	8b b1       	in	r24, 0x0b	; 11
+ 110:	86 95       	lsr	r24
+ 112:	8b b9       	out	0x0b, r24	; 11
+				copia[k]=copia[k+1];
+		}			
+        
+		for(duracion=0;duracion<15;duracion++)// duracion
+		{	
+			for(col=0;col<8;col++)//barrido de columnas
+ 114:	80 91 38 01 	lds	r24, 0x0138
+ 118:	8f 5f       	subi	r24, 0xFF	; 255
+ 11a:	80 93 38 01 	sts	0x0138, r24
+ 11e:	88 30       	cpi	r24, 0x08	; 8
+ 120:	50 f3       	brcs	.-44     	; 0xf6 <main+0x8a>
+			{	PORTB=~copia[col];
+				_delay_ms(1);
+				PORTD=PORTD>>1;
+			}
+			PORTD=0x80;// volver a la primera col
+ 122:	6b b9       	out	0x0b, r22	; 11
+			copia[k]=mensaje[letra][col_mensaje];
+			else	
+				copia[k]=copia[k+1];
+		}			
+        
+		for(duracion=0;duracion<15;duracion++)// duracion
+ 124:	80 91 3a 01 	lds	r24, 0x013A
+ 128:	90 91 3b 01 	lds	r25, 0x013B
+ 12c:	01 96       	adiw	r24, 0x01	; 1
+ 12e:	90 93 3b 01 	sts	0x013B, r25
+ 132:	80 93 3a 01 	sts	0x013A, r24
+ 136:	8f 30       	cpi	r24, 0x0F	; 15
+ 138:	91 05       	cpc	r25, r1
+ 13a:	d0 f2       	brcs	.-76     	; 0xf0 <main+0x84>
+				_delay_ms(1);
+				PORTD=PORTD>>1;
+			}
+			PORTD=0x80;// volver a la primera col
+		}	
+		col_mensaje++;
+ 13c:	80 91 39 01 	lds	r24, 0x0139
+ 140:	8f 5f       	subi	r24, 0xFF	; 255
+ 142:	80 93 39 01 	sts	0x0139, r24
+		if(col_mensaje==9)
+ 146:	89 30       	cpi	r24, 0x09	; 9
+ 148:	09 f0       	breq	.+2      	; 0x14c <main+0xe0>
+ 14a:	a7 cf       	rjmp	.-178    	; 0x9a <main+0x2e>
+		{	col_mensaje=0;
+ 14c:	10 92 39 01 	sts	0x0139, r1
+			letra++;
+ 150:	80 91 2f 01 	lds	r24, 0x012F
+ 154:	8f 5f       	subi	r24, 0xFF	; 255
+ 156:	80 93 2f 01 	sts	0x012F, r24
+			if(letra==5)
+ 15a:	85 30       	cpi	r24, 0x05	; 5
+ 15c:	09 f0       	breq	.+2      	; 0x160 <main+0xf4>
+ 15e:	9d cf       	rjmp	.-198    	; 0x9a <main+0x2e>
+				letra=0;
+ 160:	10 92 2f 01 	sts	0x012F, r1
+ 164:	9a cf       	rjmp	.-204    	; 0x9a <main+0x2e>
+
+00000166 <_exit>:
+ 166:	f8 94       	cli
+
+00000168 <__stop_program>:
+ 168:	ff cf       	rjmp	.-2      	; 0x168 <__stop_program>

@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\eve\SkyDrive\6em4\Microtontroladores\labels.tmp" -fI -W+ie -o "C:\Users\eve\SkyDrive\6em4\Microtontroladores\Timer.hex" -d "C:\Users\eve\SkyDrive\6em4\Microtontroladores\Timer.obj" -e "C:\Users\eve\SkyDrive\6em4\Microtontroladores\Timer.eep" -m "C:\Users\eve\SkyDrive\6em4\Microtontroladores\Timer.map" "C:\Users\eve\SkyDrive\6em4\Microtontroladores\Timer.asm"

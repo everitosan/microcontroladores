@@ -1,0 +1,65 @@
+/*
+ * Ejemplo5.c
+ *
+ * Created: 22/02/2013 01:33:36 p. m.
+ *  Author: Everardo
+ */ 
+
+
+#include <avr/io.h>
+#include <util/delay.h>
+/*
+const unsigned char mensaje[4][8]={				//const es para guardar en la memoria flash y no en RAM
+							{0xff,0xff,0xff,0x18,0x18,0xff,0xff,0xff},//H
+							{0xff,0xff,0xff,0xe7,0xe7,0xff,0xff,0xff},//O								
+							{0xff,0xff,0xff,0x03,0x03,0x03,0x03,0x03},//L
+							{0xff,0xff,0xff,0xc4,0xc4,0xff,0xff,0xff}//A									
+						};*/
+const unsigned char eve[4][8]={
+							{0xFF,0xFF,0xDB,0xDB,0xDB,0xDB,0xDB,0x81},
+							{0xF8,0xFC,0x06,0x03,0x03,0x06,0xFC,0xF8},
+							{0xFF,0xFF,0xDB,0xDB,0xDB,0xDB,0xDB,0x81},
+							{0x00,
+								0xCC,
+								0xCC,
+								0x33,
+								0x33,
+								0xCC,
+								0xCC,
+								0x00}
+								};
+								
+unsigned int duration=0;
+unsigned char columnas=0;
+unsigned char letra=0;
+
+int main(void)
+{
+	DDRB=0xff;
+	DDRD=0xff;
+	
+	
+    while(1)
+    {
+		
+		for(duration=0; duration<200;duration++)//ciclo principal
+		{
+					PORTD=0x80;//activa primera columna
+					
+			
+			for(columnas=0;columnas<8;columnas++)//barrodo de columnas
+			{
+					PORTB=~eve[letra][columnas];
+					_delay_ms(1);
+					PORTD=PORTD>>1;
+			}				
+			
+		}
+		letra++;
+		if (letra==4)
+		{
+			letra=0;
+		}
+        
+    }
+}
